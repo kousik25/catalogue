@@ -48,13 +48,13 @@ pipeline {
                 """
             }
         }
-    //     stage('Sonar Scan'){
-    //         steps{
-    //             sh """
-    //                 sonar-scanner
-    //             """
-    //         }
-    //    }
+        stage('Sonar Scan'){
+            steps{
+                sh """
+                    sonar-scanner
+                """
+            }
+       }
         stage('Build') {
             steps {
                 sh """
@@ -84,11 +84,11 @@ pipeline {
             }
         }
         stage('Deploy') {
-            // when {
-            //     expression{
-            //         params.Deploy == 'true'
-            //     }
-            // } 
+            when {
+                expression{
+                    params.Deploy == 'true'
+                }
+            } 
             steps {
                 script {
                         def params = [
